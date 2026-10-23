@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-navy-900 font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-brand-500/20 text-brand-700;
+  }
+}
+
+
+/* =========================================================
+   COMPONENTS
+   ========================================================= */
+
+@layer components {
+
+  /* Main horizontal container */
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  /* Standard section vertical spacing */
+  .section-py {
+    @apply py-20 lg:py-28;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-600 via-brand-500 to-electric-500 bg-clip-text text-transparent;
+  }
+
+  /* Light gradient text for dark backgrounds */
+  .text-gradient-light {
+    @apply bg-gradient-to-r from-white via-brand-100 to-electric-200 bg-clip-text text-transparent;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40;
+  }
+
+  /* Dark glass effect */
+  .glass-dark {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  /* Card hover animation */
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-1 hover:shadow-elevated;
+  }
+
+  /* Grid background pattern */
+  .grid-pattern {
+    background-image:
+      linear-gradient(
+        to right,
+        rgba(51, 102, 255, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(51, 102, 255, 0.04) 1px,
+        transparent 1px
+      );
+
+    background-size: 48px 48px;
+  }
+
+  /* Hide scrollbar for horizontally-scrollable nav strips (mobile) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Dot background pattern */
+  .dot-pattern {
+    background-image: radial-gradient(
+      circle,
+      rgba(51, 102, 255, 0.08) 1px,
+      transparent 1px
+    );
+
+    background-size: 24px 24px;
+  }
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+@layer utilities {
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Bottom fade mask */
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 70%,
+      transparent 100%
+    );
+
+    mask-image: linear-gradient(
+      to bottom,
+      black 70%,
+      transparent 100%
+    );
+  }
+
+  /* Animation delays */
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+
+/* =========================================================
+   TECHNOLOGY PARTNERS
+   CONTINUOUS INFINITE MARQUEE
+   ========================================================= */
+
+
+/* =========================================================
+   FIRST ROW — MOVE LEFT
+   ========================================================= */
+
+@keyframes partners-left {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* =========================================================
+   SECOND ROW — MOVE RIGHT
+   ========================================================= */
+
+@keyframes partners-right {
+
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =========================================================
+   TECHNOLOGY PARTNERS — LEFT ROW
+   ========================================================= */
+
+.animate-partners-left {
+
+  display: flex;
+
+  width: max-content;
+
+  animation-name: partners-left;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+  /*
+    Always running.
+    The animation never stops on hover.
+  */
+  animation-play-state: running !important;
+
+  /*
+    GPU optimization.
+  */
+  will-change: transform;
+
+  backface-visibility: hidden;
+}
+
+
+/* =========================================================
+   TECHNOLOGY PARTNERS — RIGHT ROW
+   ========================================================= */
+
+.animate-partners-right {
+
+  display: flex;
+
+  width: max-content;
+
+  animation-name: partners-right;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+  /*
+    Always running.
+    The animation never stops on hover.
+  */
+  animation-play-state: running !important;
+
+  /*
+    GPU optimization.
+  */
+  will-change: transform;
+
+  backface-visibility: hidden;
+}
+
+
+/* =========================================================
+   TECHNOLOGY PARTNERS — NEVER PAUSE ON HOVER
+   ========================================================= */
+
+.animate-partners-left:hover,
+.animate-partners-right:hover {
+
+  animation-play-state: running !important;
+
+}
+
+
+/* =========================================================
+   THEY TRUST US
+   CONTINUOUS INFINITE LOGO CAROUSEL
+   ========================================================= */
+
+
+/*
+  The React component must duplicate the logos:
+
+  [Logo 1, Logo 2, Logo 3]
+  +
+  [Logo 1, Logo 2, Logo 3]
+
+  The animation moves the first copy away
+  and the second identical copy takes its place.
+
+  This creates a seamless infinite loop.
+*/
+
+
+@keyframes scroll-x {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* =========================================================
+   THEY TRUST US — MAIN ANIMATION
+   ========================================================= */
+
+.animate-scroll-x {
+
+  display: flex;
+
+  width: max-content;
+
+  animation-name: scroll-x;
+
+  /*
+    Animation speed.
+
+    35s = slower
+    30s = medium
+    25s = faster
+    18s = very fast
+  */
+  animation-duration: 35s;
+
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+
+  animation-fill-mode: both;
+
+  /*
+    Always running.
+  */
+  animation-play-state: running !important;
+
+  /*
+    GPU acceleration.
+  */
+  will-change: transform;
+
+  backface-visibility: hidden;
+}
+
+
+/* =========================================================
+   THEY TRUST US — NEVER PAUSE ON HOVER
+   ========================================================= */
+
+.animate-scroll-x:hover {
+
+  animation-play-state: running !important;
+
+}
+
+
+/* =========================================================
+   PREVENT PARENT HOVER RULES FROM STOPPING ANIMATION
+   ========================================================= */
+
+.group:hover .animate-scroll-x {
+
+  animation-play-state: running !important;
+
+}
+
+
+/* =========================================================
+   FORCE ALL MARQUEES TO KEEP RUNNING
+   ========================================================= */
+
+.animate-partners-left,
+.animate-partners-right,
+.animate-scroll-x {
+
+  animation-play-state: running !important;
+
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+/*
+  We intentionally do NOT disable the marquee animations
+  for prefers-reduced-motion.
+
+  This guarantees that:
+
+  - Technology Partners keep moving.
+  - They Trust Us keeps moving.
+  - Hover never pauses either carousel.
+
+  Reveal animations are still disabled for users
+  who prefer reduced motion.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+}
+
+
+/* =========================================================
+   PHONE INPUT (react-phone-number-input)
+   Scoped to .phone-field so it only affects the contact
+   form's phone field and matches the look of the other
+   text inputs (rounded-xl border, brand focus ring, etc.).
+   ========================================================= */
+
+.phone-field .PhoneInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid theme('colors.navy.200');
+  background-color: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.phone-field .PhoneInput:focus-within {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px theme('colors.brand.500');
+}
+
+.phone-field--error .PhoneInput {
+  border-color: theme('colors.red.300');
+}
+
+.phone-field--error .PhoneInput:focus-within {
+  box-shadow: 0 0 0 2px theme('colors.red.400');
+}
+
+.phone-field .PhoneInputCountry {
+  margin: 0;
+  padding: 0 0.5rem 0 1rem;
+}
+
+.phone-field .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon {
+  outline: none;
+  box-shadow: 0 0 0 2px theme('colors.brand.500');
+  border-radius: 0.25rem;
+}
+
+.phone-field .PhoneInputCountryIcon {
+  width: 1.25rem;
+  box-shadow: none;
+}
+
+.phone-field .PhoneInputCountrySelectArrow {
+  opacity: 0.5;
+}
+
+.phone-field .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.875rem 1rem 0.875rem 0;
+  font-size: 0.875rem;
+  color: theme('colors.navy.900');
+}
